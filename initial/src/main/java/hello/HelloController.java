@@ -15,9 +15,4 @@ public class HelloController {
     public String hello() {
         return "Hello :-)";
     }
-    
-    @RequestMapping("/error")
-    public String error() {
-    	return "Error!";
-    }
 }
