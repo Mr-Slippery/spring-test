@@ -1,15 +1,12 @@
 package hello;
 
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicLong;
 
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,13 +16,12 @@ public class MandelbrotController {
 	ServletContext servletContext;
     
     @RequestMapping("/mandel")
-    public ResponseEntity<byte[]> mandel() throws IOException {
-    	byte[] arr = new byte[100];
-    	for(byte i = 0; i < 100; i++) {
-    		arr[i] = i;
-    	}
-        final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(org.springframework.http.MediaType.APPLICATION_OCTET_STREAM);
-        return new ResponseEntity<byte[]>(arr, headers, HttpStatus.CREATED);
+    public Mandel mandel(
+    			@RequestParam(value="x", defaultValue="-1.0") double x, 
+    			@RequestParam(value="y", defaultValue="-1.0") double y,
+    			@RequestParam(value="r", defaultValue="2") double r,
+    			@RequestParam(value="maxIter", defaultValue="128") long maxIter
+    		) throws IOException {
+    	return new Mandel(x, y, r, maxIter);
     }
 }
