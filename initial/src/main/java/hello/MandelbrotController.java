@@ -25,7 +25,7 @@ public class MandelbrotController {
     		arr[i] = i;
     	}
         final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(org.springframework.http.MediaType.ALL);
+        headers.setContentType(org.springframework.http.MediaType.APPLICATION_OCTET_STREAM);
         return new ResponseEntity<byte[]>(arr, headers, HttpStatus.CREATED);
     }
 }
