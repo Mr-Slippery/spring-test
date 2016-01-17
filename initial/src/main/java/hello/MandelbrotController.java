@@ -18,6 +18,9 @@ public class MandelbrotController {
     			@RequestParam(value="dj", defaultValue="0") int dj,
     			@RequestParam(value="maxIter", defaultValue="128") int maxIter
     		) throws IOException {
+    	if (di > 4000 || dj > 4000) {
+    		return null;
+    	}
     	Mandel m = new Mandel(x, y, dx, dy, di, dj, maxIter);
     	m.computeMap();
     	return m;
